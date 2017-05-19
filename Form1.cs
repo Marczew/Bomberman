@@ -25,7 +25,7 @@ namespace Gierka
         }
 	PictureBox[] blocki= new PictureBox[6];
 
-        private void timer1_Tick(object sender, EventArgs e)
+        private void Timer1_Tick(object sender, EventArgs e)
         {
 
             ///// Side Collision
@@ -53,14 +53,14 @@ namespace Gierka
                     // player.Left = player.Left + 3;
                 }
                 /////Top Collision
-                if (player.Top <= blocki[i].Bottom + 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Bottom < blocki[i].Bottom + 33 && player.Top > blocki[i].Top)
+                if (player.Top <= blocki[i].Bottom + 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Top > blocki[i].Top)
                 {
                     player.Top = blocki[i].Bottom;
                     up = false;
                     //player.Top = player.Top + 3;
                 }
                 /// Bottom Collision
-                if (player.Bottom >= blocki[i].Top - 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Top > blocki[i].Top - 33 && player.Bottom < blocki[i].Bottom)
+                if (player.Bottom >= blocki[i].Top - 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Bottom < blocki[i].Bottom)
                 {
                     player.Top = blocki[i].Top - (player.Bottom-player.Top);
                     down = false;
