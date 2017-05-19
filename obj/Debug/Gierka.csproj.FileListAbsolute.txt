@@ -1,0 +1,18 @@
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\bin\Debug\Gierka.exe.config
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\bin\Debug\Gierka.exe
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\bin\Debug\Gierka.pdb
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.csprojResolveAssemblyReference.cache
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.Form1.resources
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.Properties.Resources.resources
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.csproj.GenerateResource.Cache
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.exe
+C:\Users\HP\Desktop\Programowanie\Programowanie C#\Gierka\Gierka\obj\Debug\Gierka.pdb
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\bin\Debug\Gierka.exe.config
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\bin\Debug\Gierka.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\bin\Debug\Gierka.pdb
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.csprojResolveAssemblyReference.cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.Form1.resources
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.Properties.Resources.resources
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.csproj.GenerateResource.Cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\Gierka\Gierka\obj\Debug\Gierka.pdb

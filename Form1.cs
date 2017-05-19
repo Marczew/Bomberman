@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace kolizja
+namespace Gierka
 {
     public partial class Form1 : Form
     {
@@ -20,18 +20,29 @@ namespace kolizja
         public Form1()
         {
             InitializeComponent();
+             player.Top = screen.Bottom - player.Height-5;
+             player.Left = screen.Left + 100;
         }
-        PictureBox[] blocki= new PictureBox[2];
+	PictureBox[] blocki= new PictureBox[6];
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+
+            ///// Side Collision
+
+
+
             blocki[0] = block1;
             blocki[1] = block2;
-            for (int i=0;i<2;i++)
+            blocki[2] = block3;
+            blocki[3] = block4;
+            blocki[4] = block5;
+            blocki[5] = block6;
+            for (int i=0;i<6;i++)
             {
                 if (player.Right >= blocki[i].Left - 2 && player.Right < blocki[i].Right && player.Bottom > blocki[i].Top && player.Top < blocki[i].Bottom)
                 {
-                    player.Left = blocki[i].Left - 30;
+                    player.Left = blocki[i].Left - (player.Right-player.Left);
                     right = false;
                     //  player.Left = player.Left-3;
                 }
@@ -51,21 +62,23 @@ namespace kolizja
                 /// Bottom Collision
                 if (player.Bottom >= blocki[i].Top - 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Top > blocki[i].Top - 33 && player.Bottom < blocki[i].Bottom)
                 {
-                    player.Top = blocki[i].Top - 30;
+                    player.Top = blocki[i].Top - (player.Bottom-player.Top);
                     down = false;
                     //  player.Top = player.Top - 3;
                 }
-            }
+            } 
+
             
             /////// Walking
-            if (right == true)
+            if (right==true)
             {
                 player.Left += 3;
             }
-            if (left == true)
+            if(left==true)
             {
                 player.Left -= 3;
             }
+
             if (up == true)
             {
                 player.Top -= 3;
@@ -74,15 +87,20 @@ namespace kolizja
             {
                 player.Top += 3;
             }
+            ////////
+         
+            
+           
+
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Right)
+            if(e.KeyCode==Keys.Right)
             {
                 right = true;
             }
-            if (e.KeyCode == Keys.Left)
+            if(e.KeyCode==Keys.Left)
             {
                 left = true;
             }
@@ -96,6 +114,7 @@ namespace kolizja
             {
                 down = true;
             }
+
         }
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
@@ -118,5 +137,10 @@ namespace kolizja
                 down = false;
             }
         }
-    }
+
+        
+        
+
+
+}
 }
