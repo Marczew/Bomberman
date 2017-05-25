@@ -164,8 +164,9 @@ namespace estyrand
             y = (player.Left + player.Right) / 2;
             x = x - (x % 30);
             y = y - (y % 30);
+            n = (y * 11 / 30) + x / 30;
             if (ilosc_bomb == 0) return 0;
-            if (A.Tablica[x / 30 * 11 + y / 30] != null) return ilosc_bomb;
+            if (A.Tablica[n] != null) return ilosc_bomb;
             if (Tablica != null)
             {
                 for (int i = 0; i < d; i++)
@@ -177,7 +178,17 @@ namespace estyrand
             if (Tablica == null)
             {
                 d = ilosc_bomb;
-                Tablica = new PictureBox[ilosc_bomb];
+                Tablica = new PictureBox[d];
+            }
+            if (d < ilosc_bomb)
+            {
+                PictureBox[] B;
+                B = new PictureBox[ilosc_bomb];
+                for (int i = 0; i < d; i++)
+                {
+                    if (Tablica[i] != null) B[i] = Tablica[i];
+                }
+                Tablica = B;
             }
             Tablica[n] = new PictureBox()
             {
@@ -194,29 +205,31 @@ namespace estyrand
             Tablica[n].SendToBack();
             return n;
         }
-        
-        public Blok bum(int Zasięg,Plan P,PictureBox bomba)
+
+        public Blok Bum(int Zasięg, Plan P, PictureBox bomba)
         {
-            int x, y, n , wielki=0,bu_x1=-1,bu_y1=-1,bu_x2=-1,bu_y2=-1,max_x1=0,max_x2=0,max_y1=0,max_y2=0;
+            int x, y, n, wielki = 0, bu_x1 = -1, bu_y1 = -1, bu_x2 = -1, bu_y2 = -1, max_x1 = 0, max_x2 = 0, max_y1 = 0, max_y2 = 0;
             x = (bomba.Top + bomba.Bottom) / 2;
             y = (bomba.Left + bomba.Right) / 2;
             x = x - (x % 30);
             y = y - (y % 30);
             x = x / 30;
             y = y / 30;
-            n = x * 11 + y;
-            for (int j = y-1; j > y - Zasięg && P.Tablica[x][j] != 2; j--)
+            n = y * 11 + x;
+            for (int j = y; j > y - Zasięg && j>0; j--)
             {
+                if (P.Tablica[x][j] == 2) break;
                 wielki++;
                 max_y1++;
                 if (P.Tablica[x][j] == 1)
                 {
-                    bu_y1=j;
+                    bu_y1 = j;
                     break;
                 }
             }
-            for (int j = y+1; j < y + Zasięg && P.Tablica[x][j]!=2; j++)
+            for (int j = y; j < y + Zasięg && j<11; j++)
             {
+                if (P.Tablica[x][j] == 2) break;
                 wielki++;
                 max_y2++;
                 if (P.Tablica[x][j] == 1)
@@ -225,8 +238,9 @@ namespace estyrand
                     break;
                 }
             }
-            for (int i = x+1; i < x + Zasięg && P.Tablica[i][y] != 2; i++)
+            for (int i = x; i < x + Zasięg && i<13; i++)
             {
+                if (P.Tablica[i][y] == 2) break;
                 wielki++;
                 max_x2++;
                 if (P.Tablica[i][y] == 1)
@@ -235,8 +249,9 @@ namespace estyrand
                     break;
                 }
             }
-            for (int i = x-1; i > x - Zasięg && P.Tablica[i][y] != 2; i--)
+            for (int i = x;i > x - Zasięg && i>0; i--)
             {
+                if (P.Tablica[i][y] == 2) break;
                 wielki++;
                 max_x1++;
                 if (P.Tablica[i][y] == 1)
@@ -247,17 +262,17 @@ namespace estyrand
             }
             Blok dele = new Blok()
             {
-                d = wielki,
-                Tablica=new PictureBox[d]
+                d = wielki + 1
             };
-            for(int i=0;i<wielki;i++)
+            dele.Tablica = new PictureBox[dele.d];
+            for (int i = 0; i < wielki; i++)
             {
                 if (i < max_x1)
                 {
                     dele.Tablica[i] = new PictureBox()
                     {
                         Image = Properties.Resources.bomb1,
-                        Location = new System.Drawing.Point((x - max_x1+i) * 30, y*30),
+                        Location = new System.Drawing.Point(y * 30, (x - max_x1 + i) * 30),
                         Name = "plomien" + i.ToString(),
                         Size = new System.Drawing.Size(30, 30),
                         TabIndex = i,
@@ -267,12 +282,12 @@ namespace estyrand
                         BackColor = System.Drawing.Color.Transparent
                     };
                 }
-                if (i < wielki && i>max_y2+max_y1+max_x1)
+                if (i >= max_x1 && i < max_y1 + max_x1)
                 {
                     dele.Tablica[i] = new PictureBox()
                     {
                         Image = Properties.Resources.bomb1,
-                        Location = new System.Drawing.Point((x+i-(max_y2 + max_y1 + max_x1)) * 30, y*30),
+                        Location = new System.Drawing.Point((y - max_y1 + i - max_x1) * 30, x * 30),
                         Name = "plomien" + i.ToString(),
                         Size = new System.Drawing.Size(30, 30),
                         TabIndex = i,
@@ -282,12 +297,12 @@ namespace estyrand
                         BackColor = System.Drawing.Color.Transparent
                     };
                 }
-                if (i > max_x1 && i < max_y1+max_x1)
+                if (i < max_y2 + max_y1 + max_x1 && i >= max_y1 + max_x1)
                 {
                     dele.Tablica[i] = new PictureBox()
                     {
                         Image = Properties.Resources.bomb1,
-                        Location = new System.Drawing.Point(x * 30, (y-max_y1+i-max_x1) * 30),
+                        Location = new System.Drawing.Point((y - max_y1 - max_x1 + i+1) * 30,  x * 30),
                         Name = "plomien" + i.ToString(),
                         Size = new System.Drawing.Size(30, 30),
                         TabIndex = i,
@@ -297,12 +312,12 @@ namespace estyrand
                         BackColor = System.Drawing.Color.Transparent
                     };
                 }
-                if (i < max_y2 + max_y1 + max_x1 && i > max_y1+max_x1)
+                if (i < wielki && i >= max_y2 + max_y1 + max_x1)
                 {
                     dele.Tablica[i] = new PictureBox()
                     {
                         Image = Properties.Resources.bomb1,
-                        Location = new System.Drawing.Point(x * 30, (y-max_y1-max_x1+i) * 30),
+                        Location = new System.Drawing.Point(y * 30, (x + i +1- (max_y2 + max_y1 + max_x1)) * 30),
                         Name = "plomien" + i.ToString(),
                         Size = new System.Drawing.Size(30, 30),
                         TabIndex = i,
@@ -313,28 +328,29 @@ namespace estyrand
                     };
                 }
             }
-            if (bu_y1 != -1 && bu_x1!=-1)
+            dele.Tablica[wielki] = bomba;
+            if (bu_y1 != -1 && bu_x1 != -1)
             {
-                dele.Tablica[bu_x1 + 1].Dispose();
-                dele.Tablica[bu_x1+1]= Tablica[x * 11 + y - bu_y1];
+                if (dele.Tablica[bu_x1 + 1] != null)dele.Tablica[bu_x1 + 1].Dispose();
+                dele.Tablica[bu_x1 + 1] = Tablica[x * 11 + y - bu_y1];
                 Tablica[x * 11 + y - bu_y1] = null;
             }
             if (bu_y2 != -1 && bu_y1 != -1 && bu_x1 != -1)
             {
-                dele.Tablica[bu_x1 + bu_y1 + bu_y2].Dispose();
-                dele.Tablica[bu_x1+bu_y1+bu_y2] = Tablica[x * 11 + y + bu_y2];
+                if(dele.Tablica[bu_x1 + bu_y1 + bu_y2-1]!=null) dele.Tablica[bu_x1 + bu_y1 + bu_y2].Dispose();
+                dele.Tablica[bu_x1 + bu_y1 + bu_y2] = Tablica[x * 11 + y + bu_y2];
                 Tablica[x * 11 + y + bu_y2] = null;
             }
             if (bu_x1 != -1)
             {
-                dele.Tablica[0].Dispose();
-                dele.Tablica[0] = Tablica[(x-bu_x1) * 11 + y];
-                Tablica[(x-bu_x1) * 11 + y] = null;
+                if(dele.Tablica[0]!=null) dele.Tablica[0].Dispose();
+                dele.Tablica[0] = Tablica[(x - bu_x1) * 11 + y];
+                Tablica[(x - bu_x1) * 11 + y] = null;
             }
             if (bu_x2 != -1)
             {
-                dele.Tablica[wielki-1].Dispose();
-                dele.Tablica[wielki-1] = Tablica[(x + bu_x2) * 11 + y];
+                if(dele.Tablica[wielki-1]!=null) dele.Tablica[wielki - 1].Dispose();
+                dele.Tablica[wielki - 1] = Tablica[(x + bu_x2) * 11 + y];
                 Tablica[(x + bu_x2) * 11 + y] = null;
             }
             return dele;
