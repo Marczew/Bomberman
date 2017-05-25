@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace kolizja
+namespace estyrand
 {
     public partial class Form1 : Form
     {
@@ -16,48 +16,35 @@ namespace kolizja
         bool left;
         bool up;
         bool down;
-
+        Plan R;
+        Blok B;
         public Form1()
         {
-            InitializeComponent();
-        }
-        PictureBox[] blocki= new PictureBox[2];
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            blocki[0] = block1;
-            blocki[1] = block2;
-            for (int i=0;i<2;i++)
+            R = new Plan()
             {
-                if (player.Right >= blocki[i].Left - 2 && player.Right < blocki[i].Right && player.Bottom > blocki[i].Top && player.Top < blocki[i].Bottom)
-                {
-                    player.Left = blocki[i].Left - 30;
-                    right = false;
-                    //  player.Left = player.Left-3;
-                }
-                if (player.Left <= blocki[i].Right + 2 && player.Left > blocki[i].Left && player.Bottom > blocki[i].Top && player.Top < blocki[i].Bottom)
-                {
-                    player.Left = blocki[i].Right;
-                    left = false;
-                    // player.Left = player.Left + 3;
-                }
-                /////Top Collision
-                if (player.Top <= blocki[i].Bottom + 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Bottom < blocki[i].Bottom + 33 && player.Top > blocki[i].Top)
-                {
-                    player.Top = blocki[i].Bottom;
-                    up = false;
-                    //player.Top = player.Top + 3;
-                }
-                /// Bottom Collision
-                if (player.Bottom >= blocki[i].Top - 2 && player.Right > blocki[i].Left && player.Left < blocki[i].Right && player.Top > blocki[i].Top - 33 && player.Bottom < blocki[i].Bottom)
-                {
-                    player.Top = blocki[i].Top - 30;
-                    down = false;
-                    //  player.Top = player.Top - 3;
-                }
+                N = 100, ///bloczki do niszczenia
+                P = 2   ///potwory
+            };
+            R.Plano();
+            B = new Blok();
+            B.Bloczki(R);
+            for (int i = 0; i < B.d; i++)
+            {
+                if (B.Tablica[i] != null) Controls.Add(B.Tablica[i]);
             }
-            
-            /////// Walking
+            InitializeComponent();
+            player.Top = 0;
+            player.Left = 0;
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            ///colision
+            right = B.Testr(player,right);
+            left = B.Testl(player,left);
+            up = B.Testt(player,up);
+            down = B.Testb(player,down);
+            ///moving
             if (right == true)
             {
                 player.Left += 3;
@@ -66,6 +53,7 @@ namespace kolizja
             {
                 player.Left -= 3;
             }
+
             if (up == true)
             {
                 player.Top -= 3;
@@ -86,8 +74,6 @@ namespace kolizja
             {
                 left = true;
             }
-
-
             if (e.KeyCode == Keys.Up)
             {
                 up = true;
@@ -108,7 +94,6 @@ namespace kolizja
             {
                 left = false;
             }
-
             if (e.KeyCode == Keys.Up)
             {
                 up = false;

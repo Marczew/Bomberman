@@ -1,0 +1,9 @@
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.csprojResolveAssemblyReference.cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.Form1.resources
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.Properties.Resources.resources
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.csproj.GenerateResource.Cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\bin\Debug\estyrand.exe.config
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\bin\Debug\estyrand.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\bin\Debug\estyrand.pdb
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\testy\testyrand\estyrand\obj\Debug\estyrand.pdb
