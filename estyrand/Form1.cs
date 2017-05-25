@@ -16,9 +16,9 @@ namespace estyrand
         bool left;
         bool up;
         bool down;
-        bool bomb;
         Plan R;
-        Blok B;
+        Blok B,A=new Blok();
+        int ilosc_bomb = 1;
         public Form1()
         {
             R = new Plan()
@@ -63,11 +63,6 @@ namespace estyrand
             {
                 player.Top += 3;
             }
-            if(bomb==true)
-            {
-                B.bv(player);
-                bomb = false;
-            }
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
@@ -90,8 +85,8 @@ namespace estyrand
             }
             if (e.KeyCode == Keys.ControlKey)
             {
-                panel1.Controls.Add(B.Bomba(player));
-
+                ilosc_bomb = A.Bomba(player, ilosc_bomb,B);
+                panel1.Controls.Add(A.Tablica[ilosc_bomb]);
             }
         }
 

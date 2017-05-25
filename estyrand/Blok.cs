@@ -157,14 +157,28 @@ namespace estyrand
             }
         }
 
-        public PictureBox Bomba(PictureBox player)
+        public int Bomba(PictureBox player,int ilosc_bomb, Blok A)
         {
-            int x, y,n;
+            int x, y, n;
             x = (player.Top + player.Bottom) / 2;
             y = (player.Left + player.Right) / 2;
             x = x - (x % 30);
             y = y - (y % 30);
-            n = (x/30) * 11 + (y/30);
+            if (ilosc_bomb == 0) return 0;
+            if (A.Tablica[x / 30 * 11 + y / 30] != null) return ilosc_bomb;
+            if (Tablica != null)
+            {
+                for (int i = 0; i < d; i++)
+                {
+                    if (Tablica[i] != null && Tablica[i].Left == y && Tablica[i].Top == x) return ilosc_bomb;
+                }
+            }
+            n = ilosc_bomb - 1;
+            if (Tablica == null)
+            {
+                d = ilosc_bomb;
+                Tablica = new PictureBox[ilosc_bomb];
+            }
             Tablica[n] = new PictureBox()
             {
                 Image = Properties.Resources.bomb1,
@@ -178,7 +192,7 @@ namespace estyrand
                 BackColor = System.Drawing.Color.Transparent
             };
             Tablica[n].SendToBack();
-            return Tablica[n];
+            return n;
         }
         
         public Blok bum(int Zasięg,Plan P,PictureBox bomba)
@@ -191,7 +205,7 @@ namespace estyrand
             x = x / 30;
             y = y / 30;
             n = x * 11 + y;
-            for (int j = y; j > y - Zasięg && P.Tablica[x][j] != 2; j--)
+            for (int j = y-1; j > y - Zasięg && P.Tablica[x][j] != 2; j--)
             {
                 wielki++;
                 max_y1++;
@@ -201,7 +215,7 @@ namespace estyrand
                     break;
                 }
             }
-            for (int j = y; j < y + Zasięg && P.Tablica[x][j]!=2; j++)
+            for (int j = y+1; j < y + Zasięg && P.Tablica[x][j]!=2; j++)
             {
                 wielki++;
                 max_y2++;
@@ -211,7 +225,7 @@ namespace estyrand
                     break;
                 }
             }
-            for (int i = x; i < x + Zasięg && P.Tablica[i][y] != 2; i++)
+            for (int i = x+1; i < x + Zasięg && P.Tablica[i][y] != 2; i++)
             {
                 wielki++;
                 max_x2++;
@@ -221,7 +235,7 @@ namespace estyrand
                     break;
                 }
             }
-            for (int i = x; i > x - Zasięg && P.Tablica[i][y] != 2; i--)
+            for (int i = x-1; i > x - Zasięg && P.Tablica[i][y] != 2; i--)
             {
                 wielki++;
                 max_x1++;
