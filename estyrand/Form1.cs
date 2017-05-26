@@ -89,36 +89,38 @@ namespace estyrand
             }
             if (e.KeyCode == Keys.ControlKey)
             {
-                if (ilosc_bomb != 0){ ilosc_bomb = A.Bomba(player, ilosc_bomb, B);
-                if (A.Tablica != null && A.d > ilosc_bomb && ilosc_bomb >= 0)
+                if (ilosc_bomb > 0)
                 {
-                    panel1.Controls.Add(A.Tablica[ilosc_bomb]);
-                    C[ilosc_bomb] = B.Bum(z, R, A.Tablica[ilosc_bomb]);
-                    if (C[ilosc_bomb].d != 0 && C[ilosc_bomb].Tablica != null)
+                    ilosc_bomb = A.Bomba(player, ilosc_bomb, B);
+                    if (A.Tablica != null && A.d > ilosc_bomb && ilosc_bomb >= 0)
                     {
-                        await Task.Delay(4000);
-                        for (int i = 0; i < C[ilosc_bomb].d; i++)
+                        panel1.Controls.Add(A.Tablica[ilosc_bomb]);
+                        C[ilosc_bomb] = B.Bum(z, R, A.Tablica[ilosc_bomb]);
+                        if (C[ilosc_bomb].d != 0 && C[ilosc_bomb].Tablica != null)
                         {
-                            if (C[ilosc_bomb].Tablica[i] != null)
+                            await Task.Delay(4000);
+                            for (int i = 0; i < C[ilosc_bomb].d; i++)
                             {
-                                C[ilosc_bomb].Tablica[i].Visible = true;
-                                if(C[ilosc_bomb].Tablica[i].Name!="bomb"+i.ToString()) panel1.Controls.Add(C[ilosc_bomb].Tablica[i]);
+                                if (C[ilosc_bomb].Tablica[i] != null)
+                                {
+                                    C[ilosc_bomb].Tablica[i].Visible = true;
+                                    if (C[ilosc_bomb].Tablica[i].Name != "bomb" + i.ToString()) panel1.Controls.Add(C[ilosc_bomb].Tablica[i]);
+                                }
                             }
-                        }
-                        await Task.Delay(300);
-                        for (int i = 0; i < C[ilosc_bomb].d; i++)
-                        {
-                            if (C[ilosc_bomb].Tablica[i] != null)
+                            await Task.Delay(300);
+                            for (int i = 0; i < C[ilosc_bomb].d; i++)
                             {
-                                C[ilosc_bomb].Tablica[i].Visible = false;
-                                C[ilosc_bomb].Tablica[i].Dispose();
-                                C[ilosc_bomb].Tablica[i] = null;
-                                R.Poprawa(B);
+                                if (C[ilosc_bomb].Tablica[i] != null)
+                                {
+                                    C[ilosc_bomb].Tablica[i].Visible = false;
+                                    C[ilosc_bomb].Tablica[i].Dispose();
+                                    C[ilosc_bomb].Tablica[i] = null;
+                                    R.Poprawa(B);
+                                }
                             }
+                            ilosc_bomb++;
                         }
-                        ilosc_bomb++;
                     }
-                   }
                 }
             }
         }

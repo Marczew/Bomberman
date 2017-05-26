@@ -228,20 +228,20 @@ namespace estyrand
             for (int j = y+1; j < y + Zasięg+1 && j<11; j++)
             {
                 if (P.Tablica[x][j] == 2) break;
-                if (P.Tablica[x][j] == 1) bu_y2 = max_y2;
-                if (P.Tablica[x][j] == 1) break;
+                
                 wielki++;
                 max_y2++;
-                
+                if (P.Tablica[x][j] == 1) bu_y2 = max_y2;
+                if (P.Tablica[x][j] == 1) break;
             }
             for (int i = x+1; i < x + Zasięg+1 && i<13; i++)
             {
                 if (P.Tablica[i][y] == 2) break;
-                if (P.Tablica[i][y] == 1) bu_x2 = max_x2;
-                if (P.Tablica[i][y] == 1) break;
+                
                 wielki++;
                 max_x2++;
-                
+                if (P.Tablica[i][y] == 1) bu_x2 = max_x2;
+                if (P.Tablica[i][y] == 1) break;
             }
             for (int i = x-1;i > x - Zasięg-1 && i>=0; i--)
             {
@@ -330,9 +330,31 @@ namespace estyrand
             }
             if(bu_y1!=-1)
             {
+                int l = x * 11 + y-bu_y1;
                 if (dele.Tablica[0] != null) dele.Tablica[0].Dispose(); ///bum bloczek nad bombą
-                dele.Tablica[0] = Tablica[x*11 + y - bu_y1];
-                Tablica[x*11 + y- bu_y1] = null;
+                dele.Tablica[0] = Tablica[l];
+                Tablica[l] = null;
+            }
+            if (bu_x1 != -1)
+            {
+                int l= (x - bu_x1) * 11 + y;
+                if (dele.Tablica[max_y1] != null) dele.Tablica[max_y1].Dispose(); ///bum bloczek nad bombą
+                dele.Tablica[max_y1] = Tablica[l];
+                Tablica[l] = null;
+            }
+            if (bu_x2 != -1)
+            {
+                int l = (x + bu_x2) * 11 + y;
+                if (dele.Tablica[max_y1+max_x1+max_x2+1] != null) dele.Tablica[max_y1 + max_x1 + max_x2 + 1].Dispose(); ///bum bloczek nad bombą
+                dele.Tablica[max_y1 + max_x1 + max_x2 + 1] = Tablica[l];
+                Tablica[l] = null;
+            }
+            if (bu_y2 != -1)
+            {
+                int l = x * 11 + y+bu_y2;
+                if (dele.Tablica[wielki] != null) dele.Tablica[wielki].Dispose(); ///bum bloczek nad bombą
+                dele.Tablica[wielki] = Tablica[l];
+                Tablica[l] = null;
             }
             return dele;
         }
