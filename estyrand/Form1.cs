@@ -16,15 +16,18 @@ namespace estyrand
         bool left;
         bool up;
         bool down;
+
         Plan R;
         Blok B,A=new Blok();
         int ilosc_bomb = 1;
         int z = 2;
+        Blok[] C = new Blok[8];
+
         public Form1()
         {
             R = new Plan()
             {
-                N = 0, ///bloczki do niszczenia
+                N = 5, ///bloczki do niszczenia
                 P = 2   ///potwory
             };
             R.Plano();
@@ -86,38 +89,40 @@ namespace estyrand
             }
             if (e.KeyCode == Keys.ControlKey)
             {
-                int ib=ilosc_bomb;
-                if(ib!=0) ib = A.Bomba(player, ib,B);
-                if(A.Tablica!=null && A.d>ib && ib<ilosc_bomb)
+                if (ilosc_bomb != 0) ilosc_bomb = A.Bomba(player, ilosc_bomb, B);
+                if (A.Tablica != null && A.d > ilosc_bomb && ilosc_bomb >= 0)
                 {
-                    if(A.Tablica[ib]!=null) panel1.Controls.Add(A.Tablica[ib]);
-                    Blok C = new Blok();
-                    C = B.Bum(z, R, A.Tablica[ib]);
-                    if (C.d != 0 && C.Tablica != null)
+                    panel1.Controls.Add(A.Tablica[ilosc_bomb]);
+                    C[ilosc_bomb] = B.Bum(z, R, A.Tablica[ilosc_bomb]);
+                    if (C[ilosc_bomb].d != 0 && C[ilosc_bomb].Tablica != null)
                     {
                         await Task.Delay(4000);
-                        for (int i = 0; i < C.d - 1; i++)
+                        for (int i = 0; i < C[ilosc_bomb].d; i++)
                         {
-                            if(C.Tablica[i]!=null)
+                            if (C[ilosc_bomb].Tablica[i] != null)
                             {
-                                C.Tablica[i].Visible = true;
-                                panel1.Controls.Add(C.Tablica[i]);
+                                C[ilosc_bomb].Tablica[i].Visible = true;
+                                if(C[ilosc_bomb].Tablica[i].Name!="bomb"+i.ToString()) panel1.Controls.Add(C[ilosc_bomb].Tablica[i]);
                             }
                         }
                         await Task.Delay(300);
-                        for (int i = 0; i < C.d; i++)
+                        for (int i = 0; i < C[ilosc_bomb].d; i++)
                         {
-                            if (C.Tablica[i] != null)
+                            if (C[ilosc_bomb].Tablica[i] != null)
                             {
-                                C.Tablica[i].Visible = false;
-                                C.Tablica[i].Dispose();
+                                C[ilosc_bomb].Tablica[i].Visible = false;
+                                C[ilosc_bomb].Tablica[i].Dispose();
+                                C[ilosc_bomb].Tablica[i] = null;
+                                R.Poprawa(B);
                             }
                         }
-                        if (ib < ilosc_bomb) ib++;
+                        ilosc_bomb++;
                     }
                 }
             }
         }
+
+      
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -139,8 +144,8 @@ namespace estyrand
             }
             if (e.KeyCode == Keys.ControlKey)
             {
-                
             }
         }
+
     }
 }

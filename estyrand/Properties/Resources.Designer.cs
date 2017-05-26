@@ -83,6 +83,16 @@ namespace estyrand.Properties {
         /// <summary>
         ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap bomba {
+            get {
+                object obj = ResourceManager.GetObject("bomba", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Wyszukuje zlokalizowany zasób typu System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Brick {
             get {
                 object obj = ResourceManager.GetObject("Brick", resourceCulture);

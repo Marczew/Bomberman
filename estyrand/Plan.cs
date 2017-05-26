@@ -65,5 +65,18 @@ namespace estyrand
             }
 
         }
+
+        public void Poprawa(Blok B)
+        {
+            int n;
+            for(int i=0;i<k;i++)
+            {
+                for(int j=0;j<w;j++)
+                {
+                    n = j * 11 + i;
+                    if (B.Tablica[n] == null) Tablica[j][i] = 0;
+                }
+            }
+        }
     }
 }
