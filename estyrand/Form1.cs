@@ -89,7 +89,7 @@ namespace estyrand
             }
             if (e.KeyCode == Keys.ControlKey)
             {
-                if (ilosc_bomb != 0) ilosc_bomb = A.Bomba(player, ilosc_bomb, B);
+                if (ilosc_bomb != 0){ ilosc_bomb = A.Bomba(player, ilosc_bomb, B);
                 if (A.Tablica != null && A.d > ilosc_bomb && ilosc_bomb >= 0)
                 {
                     panel1.Controls.Add(A.Tablica[ilosc_bomb]);
@@ -118,6 +118,7 @@ namespace estyrand
                         }
                         ilosc_bomb++;
                     }
+                   }
                 }
             }
         }
