@@ -117,6 +117,7 @@ namespace BombMan
                                     R.Poprawa(B);
                                 }
                             }
+                            A.Tablica[ilosc_bomb] = null;
                             ilosc_bomb++;
                         }
                     }
