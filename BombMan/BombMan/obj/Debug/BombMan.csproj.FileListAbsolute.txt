@@ -1,0 +1,9 @@
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.csprojResolveAssemblyReference.cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.Properties.Resources.resources
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.csproj.GenerateResource.Cache
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\bin\Debug\BombMan.exe.config
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\bin\Debug\BombMan.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\bin\Debug\BombMan.pdb
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.exe
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.pdb
+C:\.Dysk lokalny D\AGH\INPG\Bomberman\BombMan\BombMan\BombMan\obj\Debug\BombMan.BombMan.resources
